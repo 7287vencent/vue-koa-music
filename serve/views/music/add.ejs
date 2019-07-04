@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/music/add" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">名称</label>
+      <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="form-group">
+      <label for="artist">作者</label>
+      <input type="text" class="form-control" name="artist" id="artist">
+    </div>
+    <div class="form-group">
+      <label for="music">音乐</label>
+      {{!-- accept：这个文件域只能选择某种类型的文件，属性值为 mime-type --!}}
+      <input type="file" class="form-control" name="music" id="music" accept="audio/*">
+    </div>
+    <div class="form-group">
+      <label for="poster">图片</label>
+      <input type="file" class="form-control" name="poster" id="poster" accept="image/*">
+    </div>
+    <div class="form-group">
+      <label for="lyric">歌词</label>
+      <input type="file" class="form-control" name="lyric" id="lyric" accept=".lrc">
+    </div>
+    <div class="form-group">
+      <input type="hidden" name="duration" id="duration">
+      <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </div>
+  </form>
+
+  <script>
+    (function (global) {
+      var document = global.document
+      var musicElement = document.getElementById('music')
+      var durationElement = document.getElementById('duration')
+      musicElement.addEventListener('change', function () {
+        var url = global.URL.createObjectURL(this.files[0])
+        // console.log(url)
+        var audio = new Audio()
+        audio.src = url
+        audio.addEventListener('loadedmetadata', function () {
+          durationElement.value = audio.duration
+          // console.log(audio.duration)
+        })
+      })
+    })(this)
+  </script>
+</body>
+</html>

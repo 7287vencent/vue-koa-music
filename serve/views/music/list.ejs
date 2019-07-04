@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>list</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.css">
+  <style>
+    td {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 140px;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p><a class="btn btn-default" href="/music/add">ADD</a></p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>name</th>
+        <th>artist</th>
+        <th>duration</th>
+        <th>music</th>
+        <th>poster</th>
+        <th>lyric</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(let item of list) {%>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.artist %></td>
+          <td><%= item.duration %></td>
+          <td><%= item.music %></td>
+          <td><%= item.poster %></td>
+          <td><%= item.lyric %></td>
+          <td>
+              <a href="/music/edit/<%=item.id%>">edit</a>
+              <a href="/music/delete/<%=item.id%>">delete</a>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>
