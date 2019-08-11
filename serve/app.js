@@ -44,9 +44,9 @@ app.use(views(path.join(__dirname, './views'), {
 
 // app.use(bodyParser())
 
-app.use(views(path.join(__dirname, '../views'), {
-  extension: 'ejs'
-}))
+// app.use(views(path.join(__dirname, '../views'), {
+//   extension: 'ejs'
+// }))
 // console.log('music')
 
 const router = new Router({
